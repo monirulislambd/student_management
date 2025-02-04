@@ -1,0 +1,46 @@
+{% extends "student/base.html" %}
+   
+    {% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+       
+        <h1 class = 'text-center'>Student List</h1>
+        <table class='table m-2'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- Students Information from backend -->
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.phone }}</td>
+                    <!-- Add delete button here using Django template syntax -->
+                    <td>
+                        <a href="{% url 'individual_information' student.id %}"
+                            class="btn btn-success" title="View"><i class="fa-regular fa-eye"></i></a>
+                        <a href="{% url 'update_student' student.id %}" class="btn btn-warning" title="Update"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a href="{% url 'delete_student' student.id %}" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    
+    
+    {% endblock  %}

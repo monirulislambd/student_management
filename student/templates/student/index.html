@@ -1,0 +1,32 @@
+{% extends "student/base.html" %}
+{%load crispy_forms_tags %} 
+   
+    {% block content %}
+    
+   
+            {% if update %}
+                <h1 class = 'text-center'>Update Student Data</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {{ form | crispy }}
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                
+            {% else %}
+                <h1 class = 'text-center'>Create New Student</h1>
+                <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            {% endif %}
+    
+    {% endblock  %}
+    
+
+   
+
+
+    

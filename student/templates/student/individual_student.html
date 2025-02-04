@@ -1,0 +1,17 @@
+{% extends "student/base.html" %}
+   
+    {% block content %}
+
+                  
+            
+            <h1 class = 'text-center'>Student Information</h1>
+            <p><strong>Name:</strong> {{student.name}}</p>
+            <p><strong>Email:</strong> {{student.email}}</p>
+            <p><strong>Mobile:</strong> {{student.phone}}</p>
+            <p><strong>Course:</strong> {{student.course}}</p>
+            <img src="{{ student.photo.url|default_if_none:"static/images/dummy.jpg"}}" alt="" width='200'><br><br>
+            <a  href="{% url 'update_student' student.id %}" class="btn btn-success">Edit Information</a>
+            <a  href="{% url 'student_list' %}" class="btn btn-success">Go to Back</a>
+     
+    
+    {% endblock  %}
